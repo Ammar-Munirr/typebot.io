@@ -3,13 +3,17 @@ services:
   typebot-db:
     image: postgres:13
     ports:
-      - '5432:5432'
+      - '5433:5433'
     restart: always
     volumes:
       - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: 'typebot'
       POSTGRES_PASSWORD: 'typebot'
+      NEXTAUTH_URL: http://localhost:3000
+      NEXT_PUBLIC_VIEWER_URL: http://localhost:3001
+      GITHUB_CLIENT_ID: Ov23liFJ4kYhg6CzD9bo
+      GITHUB_CLIENT_SECRET: 0b1e66486ab5e371946224aac35ba1858fbfec67
   minio:
     image: minio/minio
     command: server /data --console-address ":9001"
